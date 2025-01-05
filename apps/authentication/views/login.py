@@ -55,6 +55,14 @@ class StudentLoginView(APIView):
                 {"error": "Entered student email doesn't registered!"}, status=400
             )
 
+        if student_obj.is_active is False:
+            return Response(
+                {
+                    "error": "Account is deactivated!, please do activate the account by email otp!"
+                },
+                status=400,
+            )
+
         if check_password(validated_password, student_obj.password):
             # generate access main token
             jwt_token = generate_jwt_token(student_obj.id, settings.JWT_SECRET)
