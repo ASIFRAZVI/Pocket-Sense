@@ -37,11 +37,11 @@ EMAIL_HOST_USER= your smtp mail
 EMAIL_HOST_PASSWORD= smtp password
 
 # Build and Test
-cmd: python -m venv venv 
-cmd: source venv/bin/activate
-cmd: pip install -r requirements.txt
-cmd: python manage.py migrate
-cmd: start.bat
+1. cmd: python -m venv venv 
+2. cmd: source venv/bin/activate
+3. cmd: pip install -r requirements.txt
+4. cmd: python manage.py migrate
+5. cmd: start.bat
 
 #API guide
 
