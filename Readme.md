@@ -40,7 +40,7 @@ EMAIL_HOST_PASSWORD= smtp password
 cmd: python -m venv venv 
 cmd: source venv/bin/activate
 cmd: pip install -r requirements.txt
-cmd: python manage.py runserver
+cmd: python manage.py migrate
 cmd: start.bat
 
 #API guids
