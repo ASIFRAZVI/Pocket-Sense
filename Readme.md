@@ -43,10 +43,10 @@ cmd: pip install -r requirements.txt
 cmd: python manage.py migrate
 cmd: start.bat
 
-#API guids
+#API guide
 
 # API endpoints
-1. Student registration api which is responsible for creating new student and verifiying collage email. and after creation of Student it will send the signal for otp model cretion then otp model trigger signal to send otp to mail.
+1. Student registration api which is responsible for creating new student and verifiying collage email. and after creation of Student it will send the signal for otp model creation then otp model trigger signal to send otp to mail.
 
 - Endpoint : POST /v1/api/auth/signup/
 request body
@@ -69,7 +69,7 @@ error :
 400 bad request and error message
 
 2. login user
-the login endpoint responsible for logigin in student by comparing hashed password and generation and storing jwt aceess, refresh token in cookies.
+the login endpoint responsible for log in student by comparing hashed password and generation and storing jwt aceess, refresh token in cookies.
 
 - enpoint: POST /v1/api/auth/signin/
 
