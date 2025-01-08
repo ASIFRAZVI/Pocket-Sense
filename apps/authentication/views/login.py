@@ -83,6 +83,6 @@ class StudentLoginView(APIView):
             response.set_cookie("access_token", jwt_token, httponly=True)
             response.set_cookie("refresh_token", refresh_token, httponly=True)
 
-            return Response(response.data, status=200)
+            return response
 
         return Response({"error": "invalid password"}, status=400)
