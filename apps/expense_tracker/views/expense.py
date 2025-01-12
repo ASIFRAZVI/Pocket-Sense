@@ -203,7 +203,7 @@ class ExpenseView(APIView):
 @api_view(["GET"])
 # allowed permissions
 @permission_classes([IsAuthenticated])
-@authentication_classes([decode_jwt_token])
+# @authentication_classes([decode_jwt_token])
 # Swagger Schema for post api
 @extend_schema(
     request=ExpenseMasterSerializer,
