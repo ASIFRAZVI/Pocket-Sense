@@ -21,7 +21,8 @@ from django.contrib.auth.hashers import check_password
 from drf_spectacular.utils import extend_schema
 
 # jwt processors
-from apps.helpers.jwt_generator import generate_jwt_token, generate_refresh_token
+# from apps.helpers.jwt_generator import generate_jwt_token, generate_refresh_token
+from rest_framework_simplejwt.tokens import RefreshToken
 
 # settings
 from django.conf import settings
@@ -29,8 +30,8 @@ from django.conf import settings
 
 class StudentLoginView(APIView):
     # allowed permissions
-    permission_classes = [AllowAny]
-    authentication_classes = []
+    # permission_classes = [AllowAny]
+    # authentication_classes = []
 
     # Swagger Schema for post api
     @extend_schema(
@@ -65,23 +66,25 @@ class StudentLoginView(APIView):
 
         if check_password(validated_password, student_obj.password):
             # generate access main token
-            jwt_token = generate_jwt_token(student_obj.id, settings.JWT_SECRET)
+            # jwt_token = generate_jwt_token(student_obj.id, settings.JWT_SECRET)
 
             # Generate refresh token
-            refresh_token = generate_refresh_token(student_obj.id, settings.JWT_SECRET)
+            # refresh_token = generate_refresh_token(student_obj.id, settings.JWT_SECRET)
+
+            refresh = RefreshToken.for_user(student_obj)
 
             response = Response(
                 {
-                    "acess_token": jwt_token,
-                    "refresh_token": refresh_token,
+                    "acess_token": str(refresh.access_token),
+                    "refresh_token": str(refresh),
                     "ok": "cookies stored!",
                 },
                 status=200,
             )
 
             # Set token in cookies
-            response.set_cookie("access_token", jwt_token, httponly=True)
-            response.set_cookie("refresh_token", refresh_token, httponly=True)
+            response.set_cookie("access_token", str(refresh.access_token), httponly=True)
+            response.set_cookie("refresh_token", str(refresh), httponly=True)
 
             return response
 

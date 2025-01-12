@@ -6,7 +6,7 @@ from pocket_sense import utils
 
 class StudentMaster(AbstractBaseUser, BaseModel):
     name = models.CharField(max_length=200)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     password = models.CharField()
     phone_number = models.BigIntegerField()
     roll_number = models.CharField(max_length=200)

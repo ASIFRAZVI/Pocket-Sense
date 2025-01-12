@@ -1,9 +1,9 @@
 from rest_framework.urls import path
 from .views import StudentRegisteration, StudentLoginView,StudentLogoutView,VerifyStudent, resend_otp
-# from rest_framework_simplejwt.views import (
-#     TokenObtainPairView,
-#     TokenRefreshView,
-# )
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     # register user
@@ -17,6 +17,6 @@ urlpatterns = [
     # resend otp
     path("resend-otp/", resend_otp, name="resend_otp"),
     # simple jwt urls
-    # path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    # path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]

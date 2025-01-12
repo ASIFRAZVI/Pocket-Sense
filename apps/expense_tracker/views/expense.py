@@ -32,7 +32,7 @@ from apps.helpers.jwt_decoder import decode_jwt_token
 class ExpenseView(APIView):
     # allowed permissions
     permission_classes = [IsAuthenticated]
-    authentication_classes = [decode_jwt_token]
+    # authentication_classes = [decode_jwt_token]
 
     # Swagger Schema for post api
     @extend_schema(
@@ -70,7 +70,7 @@ class ExpenseView(APIView):
 
         # # create new expense
         # expense_obj = ExpenseMaster.objects.create(**final_data)
-        return Response({"error": "expense added"}, status=201)
+        return Response({"message": "expense added"}, status=201)
 
     def get(self, request, expense_id=None, catogary=None, *args, **kwargs):
         """method to get all expenses or specific expense"""
